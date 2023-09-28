@@ -84,7 +84,7 @@ RSpec.describe "Poker::API" do
           expect(json[:errors]).to eq([
             {
               card_set: "s1  f2 s3  s4 s5",
-              msg: "2番カード指定文字が不正です. (f2)"
+              msg: "2番カード指定文字が不正です. (F2)"
             }
           ])
         end
@@ -213,6 +213,32 @@ RSpec.describe "Poker::API" do
           expect(json[:results]).to eq([
             {
               card_set: "s10 s1 s11 s12 s13",
+              hand: "Royal Flush"
+            }
+          ])
+          expect(json[:errors]).to be_empty
+        end
+
+        it "has uppercase letters" do
+          post @api_url, params: {"card_sets": ["s10 S1 s11 s12 s13"]}, as: :json
+          expect(response.status).to eq(201)
+          json = JSON.parse(response.body).deep_symbolize_keys
+          expect(json[:results]).to eq([
+            {
+              card_set: "s10 S1 s11 s12 s13",
+              hand: "Royal Flush"
+            }
+          ])
+          expect(json[:errors]).to be_empty
+        end
+
+        it "has fullwidth letters" do
+          post @api_url, params: {"card_sets": ["s10 ｓ1　s11 　s12 s13"]}, as: :json
+          expect(response.status).to eq(201)
+          json = JSON.parse(response.body).deep_symbolize_keys
+          expect(json[:results]).to eq([
+            {
+              card_set: "s10 ｓ1　s11 　s12 s13",
               hand: "Royal Flush"
             }
           ])
