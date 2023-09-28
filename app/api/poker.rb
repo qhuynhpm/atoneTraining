@@ -8,7 +8,7 @@ module Poker
 
     helpers PokerHelper
 
-    resource :statuses do
+    resource :poker do
 
       desc 'Evaluate card set'
       params do
