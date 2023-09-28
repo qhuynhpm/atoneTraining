@@ -1,9 +1,9 @@
 module PokerHelper
-  VALID_SUITS_SET = ["s", "c", "d", "h"]
+  VALID_SUITS_SET = ["S", "C", "D", "H"]
   VALID_RANKS_SET = (1..13).to_a
 
   def validate_card_set input
-    half_width_input = input.tr "０-９ａ-ｚＡ-Ｚ．＠−", "0-9a-zA-Z.@-".upcase
+    half_width_input = input.tr("０-９ａ-ｚＡ-Ｚ．＠−", "0-9a-zA-Z.@-").upcase
     cards = half_width_input.split ' '
     if cards.length != 5 
       return {"is_valid" => false, "msg" => "カード5枚だけで入力してください!"}
