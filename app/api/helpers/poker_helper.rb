@@ -27,7 +27,7 @@ module PokerHelper
     
     if wrong_card_indexs.length > 0
       wrong_card_indexs_string = wrong_card_indexs.map { |num| (num + 1).to_s }.join ", "
-      return {"is_valid" => false, "msg" => "#{wrong_card_string}番カード指定文字が不正です. (#{wrong_cards.join ", "})"} 
+      return {"is_valid" => false, "msg" => "#{wrong_card_indexs_string}番カード指定文字が不正です. (#{wrong_cards.join ", "})"} 
     end
 
     return {"is_valid" => true, "suits" => suits, "ranks" => ranks}
@@ -49,13 +49,13 @@ module PokerHelper
       rank_counts = ranks.group_by { |rank| ranks.count(rank) }
 
       if rank_counts.keys.max == 4
-        return "Four of a Kind"
+        return "Four of a kind"
       elsif rank_counts.keys.sort == [2, 3]
         return "Full House"
       elsif ranks.min == ranks.max - 4 or ranks.sort == [1,10,11,12,13]
         return "Straight"
       elsif rank_counts.keys.max == 3
-        return "Three of a Kind"
+        return "Three of a kind"
       elsif rank_counts[2]
         if rank_counts[2].length == 4
           return "Two Pair"
