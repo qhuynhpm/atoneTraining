@@ -1,5 +1,5 @@
 require_relative "boot"
-
+require_relative "../app/api/poker"
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -18,5 +18,7 @@ module Poker
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
   end
 end
