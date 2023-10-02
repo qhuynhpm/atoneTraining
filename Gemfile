@@ -53,6 +53,7 @@ gem "bootsnap", require: false
 
 gem "grape"
 gem "grape-entity"
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -69,6 +70,9 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "rails_live_reload"
+  gem 'guard'
+  gem 'guard-shell'
 end
 
 group :test do
