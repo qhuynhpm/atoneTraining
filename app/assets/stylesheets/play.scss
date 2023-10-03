@@ -1,0 +1,101 @@
+body {
+  background-color: black;
+  color: #efaa9d;
+  text-align: center;
+  font-family: Lato, Tahoma, sans-serif;
+}
+
+#result {
+  display: none;
+}
+
+p a {
+  color: #f4f2ca;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255, .2);
+  padding: .2em 0;
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  transition: all .2s linear;
+}
+p a:hover {
+  color: #f4f2ca;
+  opacity: .6;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width:  70vw;
+}
+
+#cards-wrapper {
+  display: none;
+}
+
+/* style input field text */
+::-webkit-input-placeholder {
+   color: white;
+   opacity: 1;
+   text-align: center;
+}
+
+/* Input field that looks like a button */
+.card-input {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  background-color: #d8492e;
+  padding: .5em 1em;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  -webkit-transition: all .3s linear;
+  -moz-transition: all .3s linear;
+  transition: all .3s linear;
+
+}
+
+.card-input:hover {
+  background-color: #d0432a;
+}
+
+/* after button is clicked */
+.card-input.active {
+  width: 35vw;
+  height: 60px;
+  border-radius: 4px;
+  outline: none;
+  color: white;
+  cursor: inherit;
+  font-size: xx-large;
+}
+
+
+/* vertically position everything for effect */
+@media screen and (min-width: 480px) {
+  
+  // .middle {
+  //   width: 100%;
+  //   //position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translateX(-50%) translateY(-50%);
+  // }
+  
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
