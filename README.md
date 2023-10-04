@@ -47,6 +47,7 @@ atone試練PJTとしてのアプリケーションです！
 ## デモ
 
 ![hippo](https://t.gyazo.com/teams/netprotections/6a286c96b909a7bfdf8aca8618cdba37.gif)
+[こちら！](https://t.gyazo.com/teams/netprotections/6a286c96b909a7bfdf8aca8618cdba37.gif)
 
 
 ## APIの参照
