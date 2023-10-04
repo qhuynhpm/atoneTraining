@@ -17,30 +17,46 @@ atone試練PJTとしてのアプリケーションです！
 ![Static Badge](https://img.shields.io/badge/20.10.22-Docker-blue)
 
 
+
 ## ローカルで実行
 
 - PJTのクローンする
 
 ```bash
-  git clone https://github.com/qhuynhpm/atoneTraining.git
+    git clone https://github.com/qhuynhpm/atoneTraining.git
 ```
 
 - PJTのディレクトリに移動する
 
 ```bash
-  cd Poker
+    cd Poker
 ```
+
+**Dockerで**
 
 - Dockerイメージを生成する
 
 ```bash
-  docker build -t poker-rails .  
+    docker build -t poker-rails .  
 ```
 
 - Dockerコンテナを起動させる
 
 ```bash
-  docker run -p 3000:3000 poker-rails
+    docker run -p 3000:3000 poker-rails
+```
+
+**Dockerのないで**
+
+- Assetsの集合
+
+```bash
+    rails assets:precompile
+```
+- 実行する
+
+```bash
+    rails server
 ```
 
 
@@ -54,7 +70,7 @@ atone試練PJTとしてのアプリケーションです！
 
 #### ポーカーハンドを判断する
 
-- **ルート**:&ensp;```POST /api/poker/check```
+- **エンドポイント**:&ensp;```POST /api/poker/check```
 - **ヘッダ**:&ensp;```application/json```
 
 
