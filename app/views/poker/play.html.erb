@@ -127,7 +127,7 @@
   Card.initCardPool()
 
   //定数設定
-  const API_URL = "http://127.0.0.1:3000/api/poker/check"
+  const API_URL =  '<%= @env %>' == "development"? "http://127.0.0.1:3000/api/poker/check" : "http://0.0.0.0:3000/api/poker/check"
   const CARD_FRONT_IMAGE_PREFIX = "/cards/"
   const IMAGE_EXT = ".png"
 
