@@ -69,4 +69,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.assets.compile = true
   config.assets.digest = false
+  config.hosts.clear
 end
