@@ -70,4 +70,5 @@ Rails.application.configure do
   config.assets.compile = true
   config.assets.digest = false
   config.hosts.clear
+  config.public_file_server.enabled = true
 end
