@@ -29,7 +29,7 @@ atone試練PJTとしてのアプリケーションです！
 - PJTのディレクトリに移動する
 
 ```bash
-    cd Poker
+    cd atoneTraining
 ```
 
 **Dockerで**
