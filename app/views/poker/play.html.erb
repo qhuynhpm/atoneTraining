@@ -4,7 +4,7 @@
     <title>カードチェック</title>
   </head>
 
-  <body> 
+  <body>
     <div class="wrapper">
 
       <div class="cards-wrapper" id="cards-wrapper">
@@ -29,6 +29,12 @@
       </div>
 
       <h2 id="result" class="result"></h2>
+
+      <div class="spinner-wrapper" id="spinner-wrapper">
+        <span>判断中</span>
+        <div id="#ff9108" class="spinner-outter"></div>
+        <div id="#ff9108" class="spinner-inner"></div>
+      </div>
       
       <div class="input-wrapper">
         <input value="" class="card-input" id="card-input" placeholder="Go">
@@ -40,7 +46,7 @@
       <div class="js-container container" id="congrat"></div>
 
     </div><!-- /wrapper -->
-  </body> 
+  </body>
 
 </html>
 
@@ -51,6 +57,7 @@
 
     $(document).ready(function (){
     
+      $("#spinner-wrapper").css("display", "none");
       //スタートボタンを押す
       $('#card-input').click(function() {
         $(this).addClass("active");
@@ -104,7 +111,7 @@
     }
 
     //カードの価値を更新する関数
-    update(value) {    
+    update(value) {
       if (value == this.value) {
         this.preValue = this.value
         return
@@ -173,7 +180,6 @@
                 $("#card-front-image-"+i).attr("src", CARD_FRONT_IMAGE_PREFIX + cards[i].value + IMAGE_EXT);
                 $("#flip-card-inner-"+i).css("transform", "rotateY(180deg)");
               }, 400);
-              
             }
             else {
               $("#flip-card-inner-"+i).css("transform", "rotateY(180deg)");
@@ -197,23 +203,30 @@
   }
 
   function getResult(data) {
-    $.ajax({
-      url: API_URL,
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify(data),
-      success: function(response) {
-        console.log(response)
-        $("#result").html(response["results"][0]["hand"]);
-        if (response["results"][0]["hand"] == "Royal Flush") {
-          $("#congrat").css("display", "block")
+    $("#spinner-wrapper").css("display", "block");
+    $("#card-input").prop("disabled", true)
+    setTimeout(() => {
+      $.ajax({
+        url: API_URL,
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function(response) {
+          $("#spinner-wrapper").css("display", "none");
+          $("#card-input").prop("disabled", false)
+          $("#result").html(response["results"][0]["hand"]);
+          if (response["results"][0]["hand"] == "Royal Flush") {
+            $("#congrat").css("display", "block")
+          }
+          //update result to view
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error("Lỗi:", errorThrown);
+          $("#spinner-wrapper").css("display", "none");
+          $("#card-input").prop("disabled", false)
         }
-        //update result to view
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.error("Lỗi:", errorThrown);
-      }
-    });
+      });
+    },700)
   }
 
 
