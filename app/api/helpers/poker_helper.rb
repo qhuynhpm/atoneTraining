@@ -5,7 +5,7 @@ module PokerHelper
   def validate_card_set input
     half_width_input = input.tr("０-９ａ-ｚＡ-Ｚ．＠−", "0-9a-zA-Z.@-").gsub(/　/, ' ').upcase
     cards = half_width_input.split ' '
-    if cards.length != 5 
+    if cards.length != 5
       return {"is_valid" => false, "msg" => "カード5枚だけで入力してください!"}
     end
 
@@ -74,7 +74,7 @@ module PokerHelper
 
     card_sets.each do |card_set|
       validate_result = validate_card_set card_set
-      if validate_result["is_valid"] 
+      if validate_result["is_valid"]
         hand = evaluate_a_card_set validate_result["suits"], validate_result["ranks"]
         results << {"card_set" => card_set, "hand" => hand}
       else
