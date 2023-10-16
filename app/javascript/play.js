@@ -1,9 +1,27 @@
 // remap jQuery to $
 import jquery from "jquery";
+import { Card } from './models/card.js';
 
 window.jQuery = jquery;
 
 window.$ = jquery;
+
+var errMsg = "";
+
+//定数設定
+const API_URL =
+  "<%= @env %>" == "development"
+    ? "http://127.0.0.1:3000/api/poker/check"
+    : "http://0.0.0.0:3000/api/poker/check";
+const CARD_FRONT_IMAGE_PREFIX = "/cards/";
+const IMAGE_EXT = ".png";
+
+//init cards
+Card.initCardPool();
+var cards = [];
+for (var i = 0; i < 5; i++) {
+  cards.push(new Card());
+}
 
 $(document).ready(function () {
   $("#spinner-wrapper").css("display", "none");
@@ -34,62 +52,6 @@ $(document).ready(function () {
   });
 });
 
-class Card {
-  static cardCount = 0;
-  static suits = ["S", "C", "D", "H"];
-  static minRank = 1;
-  static maxRank = 13;
-  static cardPool = [];
-
-  static initCardPool() {
-    for (const suit of Card.suits) {
-      for (var i = Card.minRank; i <= Card.maxRank; i++) {
-        Card.cardPool.push(suit + i);
-      }
-    }
-  }
-
-  constructor() {
-    Card.cardCount++;
-    this.value = null;
-    this.preValue = null;
-  }
-
-  //カードの価値を更新する関数
-  update(value) {
-    if (value == this.value) {
-      this.preValue = this.value;
-      return;
-    }
-    this.preValue = this.value;
-    //持ってる価値を価値プールに返す
-    Card.cardPool.push(this.value);
-    //新たな価値が有効かどうか確認する
-    var indexInPool = Card.cardPool.indexOf(value);
-    //新たな価値の更新
-    if (indexInPool !== -1) {
-      this.value = Card.cardPool.splice(indexInPool, 1)[0];
-    } else {
-      this.value = null;
-    }
-  }
-}
-
-Card.initCardPool();
-
-//定数設定
-const API_URL =
-  "<%= @env %>" == "development"
-    ? "http://127.0.0.1:3000/api/poker/check"
-    : "http://0.0.0.0:3000/api/poker/check";
-const CARD_FRONT_IMAGE_PREFIX = "/cards/";
-const IMAGE_EXT = ".png";
-
-//init cards
-var cards = [];
-for (var i = 0; i < 5; i++) {
-  cards.push(new Card());
-}
 
 //半角文字に切り替えの関数
 function convertToHalfWidth(str) {
@@ -97,25 +59,33 @@ function convertToHalfWidth(str) {
     const fullWidth = char.charCodeAt(0);
     const halfWidth = fullWidth - 65248;
     return String.fromCharCode(halfWidth);
-  });
+  }).replace("ㄠ", " ");
 }
 
 function formatInput(input) {
-  input = convertToHalfWidth(input).replace(/\s+/g, " ").toUpperCase();
+  input = convertToHalfWidth(input).toUpperCase();
   cardTexts = input.trim().split(" ");
-  if (cardTexts.length > 5) input = cardTexts.slice(0, 5).join(" ");
+  if (cardTexts.length >= 5) input = input.trim();
   return input;
 }
 
-//入力した価値によって、カードの姿を更新するって関数
+//入力してる価値によって、カードの姿を更新するって関数
 function updateView(input) {
   var cardTexts = input.split(" ");
+  var repeatedValues = [];
+  var unidentifiedValues = [];
   for (let i = 0; i < cards.length; i++) {
     if (!cardTexts[i]) {
       $("#flip-card-inner-" + i).css("transform", "rotateY(0deg)");
       cards[i].update(null);
     } else {
       cards[i].update(cardTexts[i]);
+      if (cards[i].isRepeated) {
+        repeatedValues.push(cards[i].repeatedValue)
+      }
+      if (cards[i].isUnidentified) {
+        unidentifiedValues.push(cards[i].unidentifiedValue)
+      }
       if (cards[i].value) {
         if (cards[i].value != cards[i].preValue) {
           if (cards[i].preValue != null) {
@@ -139,6 +109,21 @@ function updateView(input) {
         $("#flip-card-inner-" + i).css("transform", "rotateY(0deg)");
       }
     }
+  }
+  repeatedValues = [...new Set(repeatedValues)];
+  if (repeatedValues.length > 0) {
+    $("#repeat-msg").html(`「${repeatedValues.join('、')}」が被っているよ！`);
+    $("#repeat-msg").css("display", "");
+  }
+  else {
+    $("#repeat-msg").css("display", "none");
+  }
+  if (unidentifiedValues.length > 0) {
+    $("#unidentified-msg").html(`「${unidentifiedValues.join('、')}」が不正だよ！`);
+    $("#unidentified-msg").css("display", "");
+  }
+  else {
+    $("#unidentified-msg").css("display", "none");
   }
 }
 
@@ -168,13 +153,16 @@ function getResult(data) {
         //update result to view
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.error("Lỗi:", errorThrown);
+        console.error("Error:", errorThrown);
         $("#spinner-wrapper").css("display", "none");
         $("#card-input").prop("disabled", false);
       },
     });
   }, 700);
 }
+
+
+
 
 //ここからはエフェクトのコントロール
 const Confettiful = function (el) {
