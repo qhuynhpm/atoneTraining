@@ -23,4 +23,7 @@ guard :shell do
   watch(%r{app/assets/stylesheets/(.*)\.(css|scss)}) do |match|
     `bundle exec rails assets:precompile`
   end
+  watch(%r{app/javascript/(.*)\.(ts|js)}) do |match|
+    `bundle exec rails assets:precompile`
+  end
 end
