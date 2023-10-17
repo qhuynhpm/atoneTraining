@@ -1,6 +1,8 @@
-require_relative "boot"
-require_relative "../app/api/poker"
-require "rails/all"
+# frozen_string_literal: true
+
+require_relative 'boot'
+require_relative '../app/api/poker'
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,8 +24,8 @@ module Poker
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
     config.middleware.use Rack::Cors do
       allow do
-        origins "*"
-        resource "*", headers: :any, methods: [:get, :post, :put, :delete, :options]
+        origins '*'
+        resource '*', headers: :any, methods: %i[get post put delete options]
       end
     end
   end
