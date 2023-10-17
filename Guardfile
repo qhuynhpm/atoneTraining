@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
@@ -19,11 +21,11 @@
 #   watch(%r{file/path}) { `command(s)` }
 #
 guard :shell do
-  watch(/(.*).txt/) {|m| `tail #{m[0]}` }
-  watch(%r{app/assets/stylesheets/(.*)\.(css|scss)}) do |match|
+  watch(/(.*).txt/) { |m| `tail #{m[0]}` }
+  watch(%r{app/assets/stylesheets/(.*)\.(css|scss)}) do |_match|
     `bundle exec rails assets:precompile`
   end
-  watch(%r{app/javascript/(.*)\.(ts|js)}) do |match|
+  watch(%r{app/javascript/(.*)\.(ts|js)}) do |_match|
     `bundle exec rails assets:precompile`
   end
 end

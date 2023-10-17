@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 require 'grape'
-require_relative './helpers/poker_helper.rb'
+require_relative './helpers/poker_helper'
 module Poker
   class API < Grape::API
     version 'v1', using: :header, vendor: 'qhuynh'
@@ -9,7 +11,6 @@ module Poker
     helpers PokerHelper
 
     resource :poker do
-
       desc 'Evaluate card set'
       params do
         requires :card_sets, type: Array[String], desc: 'Sets of five cards'
