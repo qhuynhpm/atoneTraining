@@ -16,7 +16,7 @@ module PokerHelper
     wrong_cards = []
 
     cards.each_with_index do |card, index|
-      if !PokerHelper::VALID_SUITS_SET.include?(card[0]) || !PokerHelper::VALID_RANKS_SET.include?(card[1..].to_i)
+      unless PokerHelper::VALID_SUITS_SET.include?(card[0]) && PokerHelper::VALID_RANKS_SET.include?(card[1..].to_i)
         wrong_card_indexs << index
         wrong_cards << card
       else
