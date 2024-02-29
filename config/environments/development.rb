@@ -73,4 +73,7 @@ Rails.application.configure do
   config.assets.digest = false
   config.hosts.clear
   config.public_file_server.enabled = true
+  config.after_eager_load_paths = Dir[Rails.root.join('app', 'services', '**/')]
+  config.force_ssl = true
+  config.hosts << "localhost"
 end

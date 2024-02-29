@@ -1,0 +1,35 @@
+/* application.css hoặc application.scss */
+
+#follow-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#follow-details-title {
+  margin-top: 50px !important;
+  margin-bottom: 100px !important;
+}
+
+#follower-section,
+#following-section {
+  width: 25%;
+  margin: 0 10px;
+}
+
+#follower-table,
+#following-table {
+  width: 100%;
+  border-collapse: collapse;
+  max-width: 50vh;
+  overflow-y: auto;
+}
+
+#follower-table th,
+#follower-table td,
+#following-table th,
+#following-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}

@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <%= javascript_include_tag "play_bot", "data-turbo-track": "reload", defer: true %>
+  </head>
+  <body>
+  <div id="root-root-wrapper">
+    <button id="start-btn" class="submit-button" hidden>スタート</button>
+    <p id="start-error-label" hidden></p>
+    <div id="root-wrapper" hidden>
+      <div>
+        <h2>ステージ</h2>
+        <h2 id="game-stage">200,000.0</h2>
+      </div>
+
+      <div class="wrapper" id="playing-wrapper">
+        <div class="cards-wrapper" id="opponent-cards-wrapper">
+          <% (0..1).each do |i| %>
+            <img src="/cards/back.png" id="opponent-card-<%= i %>" class="card">
+          <% end %>
+        </div>
+
+        <h3 id="opponent-best-hand" hidden></h3>
+
+        <div id="control-panel" class="card-separator">
+          <h2 id="winner-label" hidden></h2>
+        </div>
+
+        <div class="cards-wrapper" id="community-cards-wrapper">
+          <% (0..4).each do |i| %>
+            <img src="/cards/back.png" id="community-card-<%= i %>" class="card" hidden>
+          <% end %>
+        </div>
+
+        <div id="control-panel" class="card-separator">
+          <button class="control-btn" id="fold-btn" hidden>Fold</button>
+          <button class="control-btn" id="check-btn" hidden>Check</button>
+          <button class="control-btn" id="bet-btn" hidden>Bet</button>
+          <button class="control-btn" id="call-btn" hidden>Call</button>
+          <button class="control-btn" id="raise-btn" hidden>Raise</button>
+          <button class="control-btn" id="showhand-btn" hidden>Showhand</button>
+          <button class="control-btn" id="new-game-btn" hidden>New Game</button>
+          <button class="control-btn" id="exit-btn" hidden>Exit</button>
+          <button class="control-btn" id="bet-amount-label" disabled>ベット額: 0</button>
+          <input type="range" min="0" id="value-input" value="0" hidden>
+          <button class="control-btn" id="confirm-btn" hidden>確認</button>
+          <button class="control-btn" id="reselect-btn" hidden>再選択</button>
+          <button class="control-btn" id="new-game-btn" hidden>再選択</button>
+          <button class="control-btn" id="exit-btn" hidden>再選択</button>
+          <button class="control-btn" id="balance-label" disabled></button>
+        </div>
+
+        <h3 id="my-best-hand" hidden></h3>
+
+        <div class="cards-wrapper" id="my-cards-wrapper">
+          <% (0..1).each do |i| %>
+            <img src="/cards/back.png" id="my-card-<%= i %>" class="card">
+          <% end %>
+        </div>
+        <%# <h2 id="result" class="result">RESULT</h2>
+
+        <div class="spinner-wrapper" id="spinner-wrapper">
+          <span>判断中</span>
+          <div id="#ff9108" class="spinner-outter"></div>
+          <div id="#ff9108" class="spinner-inner"></div>
+        </div>
+        <div class="js-container container" id="congrat"></div> %>
+      </div>
+
+      <div>
+        <h2>賭け</h2>
+        <h2 id="bet-amount">200,000.0</h2>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

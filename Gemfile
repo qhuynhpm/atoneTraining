@@ -75,6 +75,8 @@ group :development do
   gem 'guard'
   gem 'guard-shell'
   gem 'rails_live_reload'
+  gem 'spring'
+  gem 'byebug'
 end
 
 group :test do

@@ -1,0 +1,42 @@
+ <div class="parent-wrapper1"> 
+  <h1 id="follow-details-title">Followの詳細</h1>
+  <div id="follow-details" class="profile-section">
+    <div id="follower-section">
+      <h2>Followers</h2>
+      <% if @followers.any? %>
+        <table id="follower-table">
+          <tbody>
+            <% @followers.each do |follower| %>
+              <tr>
+                <td>
+                  <%= link_to follower['display_name'], profile_path(id: follower['id']) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>Followerがいない！</p>
+      <% end %>
+    </div>
+
+    <div id="following-section">
+      <h2>Followings</h2>
+      <% if @followings.any? %>
+        <table id="following-table">
+          <tbody>
+            <% @followings.each do |following| %>
+              <tr>
+                <td>
+                  <%= link_to following['display_name'], profile_path(id: following['id']) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>Followingがいない</p>
+      <% end %>
+    </div>
+  </div>
+</div>

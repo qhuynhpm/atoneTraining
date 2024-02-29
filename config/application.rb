@@ -13,6 +13,13 @@ module Poker
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
+    config.logger.formatter = proc do |severity, datetime, progname, msg|
+      "#{datetime} #{severity} #{msg}\n"
+    end
+
+    config.log_level = :debug
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -20,8 +27,11 @@ module Poker
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.eager_load = true
     config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/**)
     config.middleware.use Rack::Cors do
       allow do
         origins '*'

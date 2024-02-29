@@ -1,0 +1,11 @@
+<div class='parent-wrapper'>
+  <form id="search-bar">
+    <input type="text" id="search-input" placeholder="メールでユーザー検索">
+    <div id="search-results" class="dropdown-content"></div>
+  </form>
+  <h1 id="home-title">TEXAS POKER</h1>
+  <%= link_to '1 Player', play_bot_path, id: 'bot-vs-player-link', class: "submit-button" %>
+  <%= link_to '1 vs 1', play_11_path, id: 'one-vs-one-link', class: "submit-button" %>
+  <%= link_to 'Logout', logout_path, id: 'logout-link', class: "submit-button" %>
+  <%= link_to 'My Profile', my_profile_path, id: 'my-profile-link', class: "submit-button" %>
+</div>
