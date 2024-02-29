@@ -1,0 +1,28 @@
+<!-- app/views/registrations/new.html.erb -->
+<div class='parent-wrapper2'>
+  <%= form_tag verify_email_path, class: "login-form" do %>
+    <h1>メール認証</h1>
+    <div class="form-group">
+      <%= text_field_tag :otp, nil, class: "inputBox", placeholder: "", required: true %>
+      <button id='send-verify-email-otp-btn' onClick='sendVerifyEmailOTP()'>OTPを再送信する</button>
+      <p id='otp-send-status' style='display:none'></p>
+    </div>
+
+    <div class="form-group">
+      <%= submit_tag "確認する", class: "submit-button", id: "verify-email-button" %>
+    </div>
+
+    <% if flash[:failed] == "otp" %>
+      <div class="form-group">
+        <%= label_tag "*OTPが無効でした！" %>
+      </div>
+    <% end %>
+
+    <% if flash[:failed] == "else" %>
+      <div class="form-group">
+        <%= label_tag "*認証が失敗してしまいました！" %>
+      </div>
+    <% end %>
+
+  <% end %>
+<div class='parent-wrapper'>

@@ -1,0 +1,87 @@
+
+#my-profile {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  height: 100vh;
+}
+
+#user-info p {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.user-profile {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.profile-section {
+  margin-top: 20px;
+}
+
+#user-info, #game-history {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+#game-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#game-history-table th, #game-history-table td {
+  border: 1px solid #e3b3b3;
+  padding: 8px;
+}
+
+.game-history {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.game-history table {
+  width: 100%;
+}
+
+.game-history th, .game-history td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.game-history thead {
+  display: block;
+  overflow-x: auto;
+}
+
+.custom-link {
+  color: #e3b3b3;
+  text-decoration: none;
+}
+
+.custom-link:hover {
+  color: #e3b3b3;
+  text-decoration: none;
+}
+
+
+#follower-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#follower-info p {
+  margin-right: 10px;
+}
+
+#follow-form,
+#unfollow-form,
+#fl-btn-follow,
+#fl-btn-unfollow {
+  margin: auto;
+}

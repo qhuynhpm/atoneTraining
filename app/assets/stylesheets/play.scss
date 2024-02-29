@@ -3,24 +3,24 @@ body {
   color: #efaa9d;
   text-align: center;
   font-family: Lato, Tahoma, sans-serif;
+  width: 100vw;
+  height: 100vh;
 }
 
-#result {
-  display: none;
+#root-root-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-p a {
-  color: #f4f2ca;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255, .2);
-  padding: .2em 0;
-  -webkit-transition: all .2s linear;
-  -moz-transition: all .2s linear;
-  transition: all .2s linear;
-}
-p a:hover {
-  color: #f4f2ca;
-  opacity: .6;
+#root-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .wrapper {
@@ -34,68 +34,66 @@ p a:hover {
 .cards-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width:  70vw;
-}
-
-#cards-wrapper {
-  display: none;
-}
-
-/* style input field text */
-::-webkit-input-placeholder {
-   color: white;
-   opacity: 1;
-   text-align: center;
-}
-
-/* Input field that looks like a button */
-.card-input {
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  background-color: #d8492e;
-  padding: .5em 1em;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  border-radius: 50%;
-  -webkit-transition: all .3s linear;
-  -moz-transition: all .3s linear;
-  transition: all .3s linear;
-  margin-bottom: 10px;
-}
-
-.card-input:hover {
-  background-color: #d0432a;
-}
-
-/* after button is clicked */
-.card-input.active {
-  width: 35vw;
-  height: 60px;
-  border-radius: 4px;
-  outline: none;
-  color: white;
-  cursor: inherit;
-  font-size: xx-large;
-}
-
-
-/* vertically position everything for effect */
-@media screen and (min-width: 480px) {
-  
-  // .middle {
-  //   width: 100%;
-  //   //position: absolute;
-  //   top: 50%;
-  //   left: 50%;
-  //   transform: translateX(-50%) translateY(-50%);
-  // }
-  
-  footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  justify-content: center;
+  width: 70vw;
+  height: 22vw;
+  @media (min-aspect-ratio: 5/4) {
+    height: 22vh;
   }
+}
+
+.card-separator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+  width: 85vw;
+  height: 7.5vw;
+  @media (min-aspect-ratio: 5/4) {
+    width: 85vh;
+    height: 7.5vh;
+  }
+}
+
+.control-btn {
+  height: 75%;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 15%;
+  font-size: small;
+}
+
+#balance-label {
+  background-color: #ff5101 !important;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2) !important;
+  color: azure;
+  font-weight: bold;
+}
+
+#start-btn {
+  padding: 10px 20px;
+  font-size: 3vw;
+  background-color: #ff004c;
+  width: 20vw
+}
+
+#start-error-label {
+  font-size: 1vw;
+  color: #ffffff;
+}
+
+#start-btn:hover {
+  background-color: #840028;
+}
+
+#winner-label {
+  color: #ff004c;
+  font-weight: bold;
+}
+
+#bet-amount-label {
+  background-color: #01004d !important;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2) !important;
+  color: azure;
+  font-weight: bold;
 }

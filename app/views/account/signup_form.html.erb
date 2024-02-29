@@ -1,0 +1,41 @@
+<!-- app/views/registrations/new.html.erb -->
+<div class='parent-wrapper'>
+  <%= form_tag signup_path, class: "login-form" do %>
+    <h2>会員登録</h2>
+    <div class="form-group">
+      <%= label_tag "メール" %>
+      <%= text_field_tag :email, nil, class: "inputBox", placeholder: "Email", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag "パスワード" %>
+      <%= password_field_tag :password, nil, class: "inputBox", placeholder: "Password", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag "パス確認" %>
+      <%= password_field_tag :confirm_password, nil, class: "inputBox", placeholder: "Password", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag "表示ネーム" %>
+      <%= text_field_tag :display_name, nil, class: "inputBox", placeholder: "Password", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= submit_tag "登録する", class: "submit-button", id: "signup-button" %>
+    </div>
+
+    <% if flash[:failed] == "conflict" %>
+      <div class="form-group">
+        <%= label_tag "*このメールアドレスはとっくに登録されました！" %>
+      </div>
+    <% end %>
+
+    <% if flash[:failed] == "else" %>
+      <div class="form-group">
+        <%= label_tag "*登録が失敗してしまいました！" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

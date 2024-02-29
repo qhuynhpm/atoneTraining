@@ -1,0 +1,47 @@
+<div id="my-profile" class="user-profile">
+  <% if @current_user %>
+    <h1>ユーザー情報</h1>
+
+    <div id="follower-info" class="profile-section">
+      <p><%= link_to "Followers: " + @follow_info["followers"].to_s, follow_details_path, class: "custom-link" %></p>
+      <p><%= link_to "Following: " + @follow_info["followings"].to_s, follow_details_path, class: "custom-link" %></p>
+    </div>
+
+    <div id="user-info" class="profile-section">
+      <p>ID: <%= @current_user["id"] %></p>
+      <p>メール: <%= @current_user["email"] %></p>
+      <p>ナーム: <%= @current_user["display_name"] %></p>
+      <p>残高: <%= @current_user["wallet_balance"] %></p>
+    </div>
+
+    <div id="game-history" class="profile-section">
+      <h1>ゲームした歴史</h1>
+      <% if @histories %>
+        <table id="game-history-table">
+          <thead>
+            <tr>
+              <th>結果</th>
+              <th>価値</th>
+              <th>相手</th>
+              <th>時間</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @histories.each do |history| %>
+              <tr>
+                <td><%= history['profit'] > 0? "負" : "勝" %></td>
+                <td><%= history['profit'] %></td>
+                <td><%= history['opponent'] %></td>
+                <td><%= history['time'] %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>ゲーム歴史がありません。</p>
+      <% end %>
+    </div>
+  <% else %>
+    <p>情報収集が失敗でした！</p>
+  <% end %>
+</div>

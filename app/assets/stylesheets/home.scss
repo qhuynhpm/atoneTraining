@@ -1,0 +1,72 @@
+#home-title {
+  margin-bottom: 20px;
+}
+
+#search-bar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 10px;
+}
+
+#search-bar input {
+  padding: 5px;
+  font-size: 14px;
+  min-width: 300px;
+}
+
+::placeholder {
+  color: #888; /* Màu sắc placeholder */
+}
+
+
+.submit-button {
+  display: block;
+  width: 150px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+#logout-link {
+  position: fixed;
+  top: 10px;
+  left: 30px;
+}
+
+#logout-link:hover {
+  position: fixed;
+  top: 10px;
+  left: 30px;
+  background-color: #DC143C;
+}
+
+#my-profile-link {
+  position: fixed;
+  top: 10px;
+  right: 30px;
+}
+
+#back-to-home-link {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.result-item {
+  padding: 5px;
+  font-size: 14px;
+  min-width: 300px;
+  height: 30px;
+  background-color: #3498db;
+  color: #fff;
+  text-align: center;
+  border: 1px solid #2980b9;
+  transition: background-color 0.3s;
+}
+
+.result-item:hover {
+  background-color: #2980b9;
+  cursor: pointer;
+}

@@ -72,6 +72,7 @@ GEM
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    byebug (11.1.3)
     capybara (3.39.2)
       addressable
       matrix
@@ -270,6 +271,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     shellany (0.0.1)
+    spring (4.1.3)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -310,6 +312,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  byebug
   capybara
   cssbundling-rails
   debug
@@ -325,6 +328,7 @@ DEPENDENCIES
   rails_live_reload
   rspec-rails
   selenium-webdriver
+  spring
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
